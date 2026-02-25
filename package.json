@@ -1,0 +1,25 @@
+{
+  "name": "mongo-tools",
+  "version": "1.0.0",
+  "description": "Self-contained MongoDB cluster management CLI",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "mongo-tools": "./bin/mongo-tools"
+  },
+  "scripts": {
+    "start": "bun src/index.ts",
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts --compile --target=bun --outfile bin/mongo-tools",
+    "install-global": "bun run build && (cp bin/mongo-tools /usr/local/bin/mongo-tools 2>/dev/null || (echo 'Error: permission denied. Try: sudo bun run install-global' >&2 && exit 1))",
+    "test": "MONGO_TOOLS_CONFIG_DIR=/tmp/mongo-tools-test bun test"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.0.1",
+    "mongodb": "^6.13.1",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
